@@ -4,7 +4,13 @@
 #include"Read_file.h"
 #include"Sort.h"
 #include"ThreadPool.h"
+struct Data_Sort
+{
+	std::vector<std::string> files;
+	std::string files_str;
+	std::vector<std::pair<int, std::string>>v_pair;
 
+};
 class Word_sort_cmd
 {
 
@@ -30,9 +36,9 @@ public:
 	
 	
 };
-static void fill_vector(std::string path, std::vector<std::pair<int, std::string>>*files)
+ static void fill_vector(std::string path, std::vector<std::pair<int, std::string>>*files, Data_Sort* data)
 {
-	
+	data->v_pair.reserve(20);
 	int i = 0;
 	files->reserve(20);
 	for (auto& p : fs::directory_iterator(path)) 
@@ -56,25 +62,26 @@ static void fill_vector(std::string path, std::vector<std::pair<int, std::string
 	
 
 }
-struct Data_Sort 
-{
-	std::vector<std::string> files;
-	std::string files_str;
-	std::vector<std::pair<int, std::string>>v_pair;
 
-};
-static std::vector<std::string>show_data_v(Data_Sort* data)
+static void show_n_fill_data_v(Data_Sort* data)
 {
+	std::string numbs_fil;
+	std::vector<std::string> numbsv;
 	std::cout << "Enter numbers of files (1,2):"<<std::endl;
 	
 	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
 
-	size_t length =  data->v_pair.capacity();
+	size_t length =  data->v_pair.size();
 
 	for (size_t i = 0; i < length; i++)
 	{
 		std::cout << data->v_pair.at(i).first << "  -  " << data->v_pair.at(i).second << std::endl;
 	}
-	std::cin >> data->files_str;
+	
+	std::cin >> numbs_fil;
+	
+	Split split(numbs_fil, ",");
+	split.get_words(&numbsv);
 
+	std::cout << "qwe";
 }

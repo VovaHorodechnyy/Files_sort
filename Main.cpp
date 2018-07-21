@@ -6,9 +6,10 @@
 
 
 
-int main(int argc,char*argv[])
+int main()
 {
-
+	//int argc, char*argv[]
+	int argc = 1;
 	std::string path;
 	if (argc == 1) 
 	{
@@ -19,7 +20,8 @@ int main(int argc,char*argv[])
 		if (path == "")goto enter_path;
 		
 		
-		fill_vector(path,&data.v_pair);
+		fill_vector(path, &data.v_pair,&data);
+		show_n_fill_data_v(&data);
 		Word_sort_cmd a;
 	}
 	else 
@@ -28,7 +30,7 @@ int main(int argc,char*argv[])
 		files.reserve(argc);
 		for (size_t i = 1; i < argc; i++)
 		{
-			files.push_back(argv[i]);
+			//files.push_back(argv[i]);
 		}
 
 		///	
