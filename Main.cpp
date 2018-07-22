@@ -6,10 +6,9 @@
 
 
 
-int main()
+int main(int argc, char*argv[])
 {
-	//int argc, char*argv[]
-	int argc = 1;
+	
 	Data_Sort data;
 	
 	if (argc == 1) 
