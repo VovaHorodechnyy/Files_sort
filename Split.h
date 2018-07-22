@@ -52,4 +52,18 @@ public:
 		data_words->push_back(m_string.substr(m_prev));
 
 	}
+	void get_words(std::vector<int> *data_words)
+	{
+		while ((m_next = m_string.find(m_separator, m_prev)) != std::string::npos) {
+			std::string tmp = m_string.substr(m_prev, m_next - m_prev);
+			int b_numb = stoi(m_string.substr(m_prev, m_next - m_prev));
+			data_words->push_back(b_numb);
+			m_prev = m_next + m_delta;
+		}
+		std::string tmp = m_string.substr(m_prev);
+		//std::cout << tmp << std::endl;
+		int l_numb = stoi(m_string.substr(m_prev));
+		data_words->push_back(l_numb);
+
+	}
 };

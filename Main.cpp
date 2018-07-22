@@ -10,19 +10,23 @@ int main()
 {
 	//int argc, char*argv[]
 	int argc = 1;
-	std::string path;
+	Data_Sort data;
+	
 	if (argc == 1) 
 	{
-		Data_Sort data;
+		
+		std::string path;
 		enter_path:
 		std::cout << "Enter path to directory: " << std::endl;
 		std::cin >> path;
 		if (path == "")goto enter_path;
+		data.files.push_back("C://Users//Volodya//Desktop//q.txt");
 		
-		
-		fill_vector(path, &data.v_pair,&data);
+	fill_vector(path, &data.v_pair,&data);
 		show_n_fill_data_v(&data);
-		Word_sort_cmd a;
+	Word_sort_cmd qa(data.files);
+	qa.sort_all();
+	system("pause");
 	}
 	else 
 	{
@@ -38,19 +42,9 @@ int main()
 
 		//debug
 		///
-		Word_sort_cmd a(files);
-		a.sort_all();
+	//	Word_sort_cmd a(files);
+	//	a.sort_all();
 	
 	}
-	std::cout << "It's all? y(Yes)/n(No)";
-
 	
-	
-
-
-
-	
-
-	system("pause");
-	return 0;
 }

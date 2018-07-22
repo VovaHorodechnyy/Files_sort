@@ -31,7 +31,7 @@
 		LEN_ORDER_LOW,
 		LEN_ORDER_UP
 	};
-	 static Sort_alg get_algorithm_sor()
+	 volatile	 static Sort_alg get_algorithm_sor()
 	{
 	 menu:
 
@@ -57,10 +57,10 @@
 			 return Sort_alg::LEN_ORDER_UP;
 	
 	}
-static	 bool(*change_alg(Sort_alg alg))(const std::string&, const std::string&)
+	   static 	 bool (*change_alg(Sort_alg alg))(const std::string&, const std::string&)
 {
-	bool(*order)(const std::string& f, const std::string& s);
-	
+		    bool(*order)(const std::string& f, const std::string& s);
+	order = alp_low_order;
 	switch (alg)
 	{
 	case ALPHABETICAL_ORDER_LOW:
@@ -75,9 +75,7 @@ static	 bool(*change_alg(Sort_alg alg))(const std::string&, const std::string&)
 	case LEN_ORDER_UP:
 		order = alp_low_order;
 		break;
-	default:
-		order = alp_low_order;
-		break;
+	
 	}
 	
 	//bool(*order)(const std::string& f, const std::string& s) = alp_low_order;
@@ -86,4 +84,4 @@ static	 bool(*change_alg(Sort_alg alg))(const std::string&, const std::string&)
 	return order;
 }
 
-
+	  

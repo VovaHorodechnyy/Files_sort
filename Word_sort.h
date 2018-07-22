@@ -4,6 +4,7 @@
 #include"Read_file.h"
 #include"Sort.h"
 #include"ThreadPool.h"
+
 struct Data_Sort
 {
 	std::vector<std::string> files;
@@ -11,6 +12,7 @@ struct Data_Sort
 	std::vector<std::pair<int, std::string>>v_pair;
 
 };
+
 class Word_sort_cmd
 {
 
@@ -18,6 +20,7 @@ private:
 	std::vector<std::string> m_files;
 
 	std::string m_alg;
+	
 
 public:
     inline 	void fill_vfiles(std::vector<std::string>files)
@@ -32,10 +35,8 @@ public:
 	Word_sort_cmd():m_files(),m_alg() {};
 	Word_sort_cmd(std::vector<std::string>files);
 	void sort_all();
-	
-	
-	
 };
+
  static void fill_vector(std::string path, std::vector<std::pair<int, std::string>>*files, Data_Sort* data)
 {
 	data->v_pair.reserve(20);
@@ -66,10 +67,10 @@ public:
 static void show_n_fill_data_v(Data_Sort* data)
 {
 	std::string numbs_fil;
-	std::vector<std::string> numbsv;
+	std::vector<int> numbsv;
 	std::cout << "Enter numbers of files (1,2):"<<std::endl;
 	
-	std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+	
 
 	size_t length =  data->v_pair.size();
 
@@ -83,5 +84,15 @@ static void show_n_fill_data_v(Data_Sort* data)
 	Split split(numbs_fil, ",");
 	split.get_words(&numbsv);
 
-	std::cout << "qwe";
+	for (auto &elem : data->v_pair) 
+	{
+		if (std::find(numbsv.begin(), numbsv.end(), elem.first) != numbsv.end())
+		{
+			data->files.push_back(elem.second);
+		}
+
+	}
+
+
+	
 }
